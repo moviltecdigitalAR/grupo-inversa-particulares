@@ -2372,7 +2372,7 @@
   =========================== */
   const SUPABASE_URL      = 'https://hcdgwlvnpkduabgufnit.supabase.co';       // ej: https://abcdef.supabase.co
   const SUPABASE_ANON_KEY = 'sb_publishable_O24KM-peZRdDo2SENY-uEg_g-Y_cJt5';  // clave pública (anon/public)
-  const sb = (SUPABASE_URL !== 'TU_SUPABASE_URL' && window.supabase)
+  const sb = (SUPABASE_URL !== 'https://hcdgwlvnpkduabgufnit.supabase.co' && window.supabase)
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
 
