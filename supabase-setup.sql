@@ -67,6 +67,39 @@ create index if not exists listings_origen_idx on public.listings (origen);
 
 
 -- ================================================
+-- SEGURIDAD DEL PANEL ADMIN  ← EJECUTAR ESTO
+-- ------------------------------------------------
+-- Sin esto, nadie puede borrar avisos (ni vos).
+-- Con esto, SOLO vos (logueado con tu correo)
+-- podés editar o borrar. Un extraño no puede.
+--
+-- Pegalo en: SQL Editor > New query > Run
+-- ================================================
+
+-- Borrar avisos: solo con sesión de administrador
+drop policy if exists "borrar_solo_admin" on public.listings;
+create policy "borrar_solo_admin"
+  on public.listings for delete
+  to authenticated
+  using ( true );
+
+-- Editar avisos: solo con sesión de administrador
+drop policy if exists "editar_solo_admin" on public.listings;
+create policy "editar_solo_admin"
+  on public.listings for update
+  to authenticated
+  using ( true )
+  with check ( true );
+
+-- Ver TODOS los avisos (incluso no aprobados) desde el panel
+drop policy if exists "ver_todo_admin" on public.listings;
+create policy "ver_todo_admin"
+  on public.listings for select
+  to authenticated
+  using ( true );
+
+
+-- ================================================
 -- CONSULTA: qué canal te trae más publicaciones
 -- Pegala en SQL Editor cuando quieras ver los números
 -- ================================================

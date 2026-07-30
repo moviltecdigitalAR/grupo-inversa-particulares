@@ -63,9 +63,10 @@
       <i class="fas fa-shield-halved" style="font-size:2.5rem;color:#003366;margin-bottom:16px;"></i>
       <h2>Panel Admin</h2>
       <p>San Juan Propiedades & Minería — Particulares</p>
-      <input type="password" id="pwInput" class="form-control mb-2" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
-      <button class="btn-login" onclick="doLogin()"><i class="fas fa-lock-open me-2"></i>Ingresar</button>
-      <p class="login-error" id="loginError">Contraseña incorrecta</p>
+      <input type="email" id="emailInput" class="form-control mb-2" placeholder="Correo de administrador" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="pwInput" class="form-control mb-2" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="btn-login" id="btnLogin" onclick="doLogin()"><i class="fas fa-lock-open me-2"></i>Ingresar</button>
+      <p class="login-error" id="loginError">Correo o contraseña incorrectos</p>
     </div>
   </div>
 </div>
@@ -135,37 +136,72 @@
   const SUPABASE_URL      = 'https://hcdgwlvnpkduabgufnit.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_O24KM-peZRdDo2SENY-uEg_g-Y_cJt5';
 
-  // Contraseña del panel admin — cambiala por una que prefieras
-  const ADMIN_PASSWORD = 'inversa2026';
-
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   let allListings = [];
   let deleteTarget = null;
 
-  /* --- LOGIN --- */
-  function doLogin() {
-    const pw = document.getElementById('pwInput').value;
-    if (pw === ADMIN_PASSWORD) {
-      sessionStorage.setItem('admin_ok', '1');
-      document.getElementById('loginSection').style.display = 'none';
-      document.getElementById('adminSection').style.display = 'block';
-      loadAll();
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
-  }
-
-  function doLogout() {
-    sessionStorage.removeItem('admin_ok');
-    location.reload();
-  }
-
-  // Auto-login si ya había sesión
-  if (sessionStorage.getItem('admin_ok') === '1') {
+  /* ===========================
+     LOGIN REAL (Supabase Auth)
+     El permiso para borrar vive en la base, no en esta página.
+     Sin sesión válida, la base rechaza el borrado.
+  =========================== */
+  function mostrarPanel() {
     document.getElementById('loginSection').style.display = 'none';
     document.getElementById('adminSection').style.display = 'block';
   }
+
+  function mostrarLogin() {
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('adminSection').style.display = 'none';
+  }
+
+  function errorLogin(msg) {
+    const el = document.getElementById('loginError');
+    el.textContent = msg;
+    el.style.display = 'block';
+  }
+
+  async function doLogin() {
+    const email = (document.getElementById('emailInput').value || '').trim();
+    const pw    = document.getElementById('pwInput').value || '';
+    const btn   = document.getElementById('btnLogin');
+
+    if (!email || !pw) { errorLogin('Completá el correo y la contraseña.'); return; }
+
+    btn.disabled = true;
+    const label = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Verificando...';
+
+    const { error } = await sb.auth.signInWithPassword({ email: email, password: pw });
+
+    btn.disabled = false;
+    btn.innerHTML = label;
+
+    if (error) {
+      errorLogin(/invalid/i.test(error.message)
+        ? 'Correo o contraseña incorrectos.'
+        : 'No pudimos verificar el acceso. Revisá la conexión.');
+      return;
+    }
+
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('pwInput').value = '';
+    mostrarPanel();
+    loadAll();
+  }
+
+  async function doLogout() {
+    await sb.auth.signOut();
+    location.reload();
+  }
+
+  /* Al abrir: si hay sesión guardada, entra directo */
+  (async function initSesion() {
+    const { data } = await sb.auth.getSession();
+    if (data && data.session) { mostrarPanel(); loadAll(); }
+    else { mostrarLogin(); }
+  })();
 
   /* --- CARGAR AVISOS --- */
   async function loadAll() {
@@ -263,19 +299,26 @@
     const id = deleteTarget;
     deleteTarget = null;
     try {
-      const { error } = await sb.from('listings').delete().eq('id', id);
+      const { data, error } = await sb.from('listings').delete().eq('id', id).select('id');
       if (error) throw error;
+      /* Si la base no devuelve la fila, el borrado fue rechazado por permisos.
+         Pasa cuando la sesión de admin venció. */
+      if (!data || !data.length) {
+        alert('Tu sesión venció. Volvé a ingresar para poder eliminar avisos.');
+        await sb.auth.signOut();
+        location.reload();
+        return;
+      }
       allListings = allListings.filter(l => l.id !== id);
       const row = document.getElementById('row-' + id);
       if (row) { row.style.opacity='0'; row.style.transition='opacity .3s'; setTimeout(()=>row.remove(),300); }
       updateStats();
     } catch(e) {
-      alert('Error al eliminar. Verificá los permisos en Supabase (necesitás la policy DELETE).');
+      alert('No pudimos eliminar el aviso. Revisá la conexión y probá de nuevo.');
     }
   }
 
-  /* --- INIT: si ya está logueado cargar datos --- */
-  if (sessionStorage.getItem('admin_ok') === '1') loadAll();
+  /* La sesión se revisa arriba, en initSesion() */
 </script>
 
 </body>
