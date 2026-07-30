@@ -9,7 +9,7 @@
 <meta name="description" content="Publicá tu casa, departamento, terreno, galpón o equipo minero en el portal de San Juan. Gratis, sin comisión, sin registro. Tu aviso queda online en 2 minutos y los interesados te escriben directo por WhatsApp.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="San Juan Propiedades &amp; Minería">
-<link rel="canonical" href="https://sanjuanpropiedades.netlify.app/publicar.html">
+<link rel="canonical" href="https://sanjuaninmobiliario.com.ar/publicar.html">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -17,8 +17,8 @@
 <meta property="og:locale" content="es_AR">
 <meta property="og:title" content="Publicá tu propiedad en San Juan — Gratis y sin comisión">
 <meta property="og:description" content="En redes tu aviso dura tres días. Acá tiene una dirección propia. Publicá gratis en 2 minutos y recibí consultas directo a tu WhatsApp.">
-<meta property="og:url" content="https://sanjuanpropiedades.netlify.app/publicar.html">
-<meta property="og:image" content="https://sanjuanpropiedades.netlify.app/og-publicar.jpg">
+<meta property="og:url" content="https://sanjuaninmobiliario.com.ar/publicar.html">
+<meta property="og:image" content="https://sanjuaninmobiliario.com.ar/og-publicar.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -26,7 +26,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Publicá tu propiedad en San Juan — Gratis y sin comisión">
 <meta name="twitter:description" content="En redes tu aviso dura tres días. Acá tiene una dirección propia. Publicá gratis en 2 minutos.">
-<meta name="twitter:image" content="https://sanjuanpropiedades.netlify.app/og-publicar.jpg">
+<meta name="twitter:image" content="https://sanjuaninmobiliario.com.ar/og-publicar.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,19 +39,19 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://sanjuanpropiedades.netlify.app/#org",
+      "@id": "https://sanjuaninmobiliario.com.ar/#org",
       "name": "San Juan Propiedades & Minería",
-      "url": "https://sanjuanpropiedades.netlify.app/",
+      "url": "https://sanjuaninmobiliario.com.ar/",
       "areaServed": { "@type": "State", "name": "San Juan, Argentina" },
       "sameAs": ["https://www.instagram.com/sanjuanpropiedades"]
     },
     {
       "@type": "WebPage",
-      "@id": "https://sanjuanpropiedades.netlify.app/publicar.html",
-      "url": "https://sanjuanpropiedades.netlify.app/publicar.html",
+      "@id": "https://sanjuaninmobiliario.com.ar/publicar.html",
+      "url": "https://sanjuaninmobiliario.com.ar/publicar.html",
       "name": "Publicá tu propiedad en San Juan — Gratis y sin comisión",
       "description": "Publicá tu propiedad o equipo minero en San Juan. Gratis, sin comisión y sin registro.",
-      "isPartOf": { "@id": "https://sanjuanpropiedades.netlify.app/#org" },
+      "isPartOf": { "@id": "https://sanjuaninmobiliario.com.ar/#org" },
       "inLanguage": "es-AR"
     },
     {
@@ -882,6 +882,22 @@ document.addEventListener('DOMContentLoaded', function () {
     ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     : null;
 
+  /* =========================================================
+     ORIGEN: de qué campaña llegó la persona (?src=ig, ?src=mkt, ...).
+     Se recuerda durante la visita, así no se pierde si navega y vuelve.
+  ========================================================= */
+  const ORIGEN = (function () {
+    const permitidos = ['ig', 'fb', 'mkt', 'wa', 'dm', 'google', 'directo'];
+    let v = '';
+    try {
+      v = (new URLSearchParams(location.search).get('src') || '').toLowerCase().slice(0, 20);
+      if (v && permitidos.indexOf(v) === -1) v = 'otro';
+      if (v) sessionStorage.setItem('sjpm_src', v);
+      else   v = sessionStorage.getItem('sjpm_src') || '';
+    } catch (e) {}
+    return v || 'directo';
+  })();
+
   document.getElementById('ftWa').href =
     'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hola! Tengo una consulta sobre San Juan Propiedades & Minería.');
 
@@ -1046,6 +1062,7 @@ document.addEventListener('DOMContentLoaded', function () {
       moneda:      moneda,
       zona:        zona,
       descripcion: descripcion,
+      origen:      ORIGEN,
       status:      'aprobado'
     };
 
@@ -1063,7 +1080,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       btn.textContent = 'Publicando tu aviso...';
-      const { data, error } = await sb.from('listings').insert([payload]).select('id').single();
+      let { data, error } = await sb.from('listings').insert([payload]).select('id').single();
+
+      /* Si la columna 'origen' todavía no existe en la base, reintentamos sin ella.
+         Preferimos perder el dato de campaña antes que perder la publicación. */
+      if (error && /origen/i.test(error.message || '')) {
+        const sinOrigen = Object.assign({}, payload);
+        delete sinOrigen.origen;
+        ({ data, error } = await sb.from('listings').insert([sinOrigen]).select('id').single());
+      }
       if (error) throw error;
 
       showSuccess(data && data.id ? data.id : null, titulo);

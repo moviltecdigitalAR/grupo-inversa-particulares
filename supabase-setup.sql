@@ -1,5 +1,5 @@
 -- ================================================
--- GRUPO INVERSA — PARTICULARES
+-- SAN JUAN PROPIEDADES & MINERÍA — PARTICULARES
 -- Pegá este SQL en: supabase.com > tu proyecto
 --   > SQL Editor > New query > Pegar > Run
 -- ================================================
@@ -17,6 +17,7 @@ create table public.listings (
   zona        text        not null,
   descripcion text        not null,
   fotos       text[]      default '{}',
+  origen      text        default 'directo',
   status      text        default 'pendiente',
   created_at  timestamptz default now()
 );
@@ -50,3 +51,30 @@ create index on public.listings (created_at desc);
 -- New policy > For INSERT > nombre: "upload_publico"
 -- Expresión: true
 -- ================================================
+
+
+-- ================================================
+-- MIGRACIÓN: medir de qué campaña viene cada aviso
+-- ------------------------------------------------
+-- Si la tabla YA EXISTE (es tu caso), no ejecutes todo
+-- lo de arriba. Ejecutá SOLO estas dos líneas:
+-- ================================================
+
+alter table public.listings
+  add column if not exists origen text default 'directo';
+
+create index if not exists listings_origen_idx on public.listings (origen);
+
+
+-- ================================================
+-- CONSULTA: qué canal te trae más publicaciones
+-- Pegala en SQL Editor cuando quieras ver los números
+-- ================================================
+
+-- select
+--   coalesce(origen, 'directo') as canal,
+--   count(*)                    as avisos,
+--   max(created_at)             as ultimo
+-- from public.listings
+-- group by 1
+-- order by avisos desc;
