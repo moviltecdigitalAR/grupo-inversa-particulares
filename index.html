@@ -43,9 +43,9 @@
       --radius-sm:    8px;
       --radius-md:    14px;
       --radius-lg:    22px;
-      --shadow-sm:    0 2px 8px rgba(0,0,0,0.06);
-      --shadow-md:    0 6px 24px rgba(0,0,0,0.09);
-      --shadow-lg:    0 16px 48px rgba(0,0,0,0.13);
+      --shadow-sm:    0 2px 8px rgba(0,34,77,0.07);
+      --shadow-md:    0 6px 24px rgba(0,34,77,0.10);
+      --shadow-lg:    0 16px 48px rgba(0,34,77,0.15);
       --ff-head:      'Sora', sans-serif;
       --ff-body:      'Nunito', sans-serif;
     }
@@ -684,7 +684,8 @@
     }
     .listing-img {
       width: 100%;
-      height: 200px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       object-fit: cover;
     }
     .listing-body { padding: 20px; }
@@ -879,53 +880,6 @@
       margin-bottom: 10px;
     }
     .form-section-header p { color: rgba(255,255,255,0.65); font-size: 1rem; }
-    /* Step indicator */
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0;
-      margin-bottom: 36px;
-    }
-    .step-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: white;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--ff-head);
-      font-size: 0.85rem;
-      font-weight: 700;
-      transition: all 0.3s;
-      flex-shrink: 0;
-    }
-    .step-dot.active {
-      border-color: var(--free-green);
-      background: var(--free-green);
-      color: white;
-    }
-    .step-dot.done {
-      border-color: var(--free-green);
-      background: var(--free-light);
-      color: var(--free-green);
-    }
-    .step-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin: 0 8px;
-      white-space: nowrap;
-    }
-    .step-label.active { color: var(--free-green); font-weight: 700; }
-    .step-line {
-      height: 2px;
-      flex: 1;
-      background: var(--border);
-      min-width: 20px;
-    }
-    .step-line.done { background: var(--free-green); }
     /* Form inputs */
     .form-label {
       font-family: var(--ff-head);
@@ -939,7 +893,7 @@
       border-radius: var(--radius-sm);
       padding: 12px 16px;
       font-family: var(--ff-body);
-      font-size: 0.93rem;
+      font-size: 1rem;
       transition: border-color 0.2s;
     }
     .form-control:focus, .form-select:focus {
@@ -947,143 +901,6 @@
       box-shadow: 0 0 0 3px rgba(5,150,105,0.12);
       outline: none;
     }
-    .char-counter {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-align: right;
-      margin-top: 3px;
-    }
-    /* Photo upload */
-    .photo-upload-area {
-      border: 2px dashed var(--border);
-      border-radius: var(--radius-md);
-      padding: 36px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--surface);
-    }
-    .photo-upload-area:hover {
-      border-color: var(--free-green);
-      background: var(--free-light);
-    }
-    .photo-upload-area i { font-size: 2rem; color: var(--text-muted); margin-bottom: 10px; }
-    .photo-upload-area p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin: 0;
-    }
-    .photo-upload-area small {
-      font-size: 0.75rem;
-      color: var(--brand-green);
-      font-weight: 600;
-    }
-    .photo-previews {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .photo-preview-item {
-      width: 80px;
-      height: 80px;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      position: relative;
-      border: 2px solid var(--border);
-    }
-    .photo-preview-item img { width: 100%; height: 100%; object-fit: cover; }
-    .photo-preview-item .remove-photo {
-      position: absolute;
-      top: 2px;
-      right: 2px;
-      background: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      font-size: 0.65rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Submit button */
-    .btn-submit-free {
-      width: 100%;
-      padding: 18px;
-      background: var(--free-green);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      font-family: var(--ff-head);
-      font-weight: 700;
-      font-size: 1.05rem;
-      cursor: pointer;
-      transition: all 0.25s;
-      box-shadow: 0 6px 20px rgba(5,150,105,0.35);
-    }
-    .btn-submit-free:hover {
-      background: #048a5c;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(5,150,105,0.45);
-    }
-    .btn-submit-free:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
-    }
-    .btn-back-step {
-      background: none;
-      border: 2px solid var(--border);
-      color: var(--text-muted);
-      padding: 12px 24px;
-      border-radius: var(--radius-sm);
-      font-family: var(--ff-head);
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-back-step:hover { border-color: var(--text-mid); color: var(--text-mid); }
-    .btn-next-step {
-      background: var(--brand-blue);
-      color: white;
-      border: none;
-      padding: 14px 32px;
-      border-radius: var(--radius-sm);
-      font-family: var(--ff-head);
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-next-step:hover { background: var(--brand-blue2); transform: translateX(3px); }
-    /* Form success */
-    .form-success {
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .form-success .success-icon {
-      width: 80px;
-      height: 80px;
-      background: var(--free-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: var(--free-green);
-      margin: 0 auto 24px;
-    }
-    .form-success h4 {
-      font-family: var(--ff-head);
-      font-weight: 800;
-      color: var(--text-dark);
-      margin-bottom: 10px;
-    }
-    .form-success p { color: var(--text-muted); font-size: 0.95rem; }
 
     /* ===========================
        FAQ
@@ -1334,7 +1151,6 @@
       .pain-before, .pain-after { padding: 24px 20px; }
       .hero-particulares { padding: 60px 0; }
       .mining-callout { padding: 28px 24px; }
-      .step-indicator { overflow-x: auto; }
       .gratis-seal { width: 120px; height: 120px; margin-bottom: 30px; }
       .gratis-seal .seal-word { font-size: 1.8rem; }
       .whatsapp-float { display: none; }
@@ -1345,7 +1161,7 @@
     =========================== */
     .listing-carousel {
       position: relative;
-      height: 210px;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
       background: #e5e7eb;
       border-radius: var(--radius-md) var(--radius-md) 0 0;
@@ -1472,7 +1288,7 @@
       <a href="index.html" class="btn-nav-back d-none d-md-inline-block">
         <i class="fas fa-arrow-left me-1"></i> Sitio principal
       </a>
-      <a href="#publicar" class="btn-hero-free" style="padding: 10px 22px; font-size: 0.88rem;">
+      <a href="publicar.html?src=inicio" class="btn-hero-free" style="padding: 10px 22px; font-size: 0.88rem;">
         <i class="fas fa-plus-circle"></i> Publicar gratis
       </a>
     </div>
@@ -1500,7 +1316,7 @@
             Publicá tu propiedad, equipo minero o herramienta en el único lugar de San Juan donde los particulares aparecen organizados, con ficha completa y visibles en Google. Sin pagar nada. Nunca.
           </p>
           <div class="hero-ctas">
-            <a href="#publicar" class="btn-hero-free">
+            <a href="publicar.html?src=inicio" class="btn-hero-free">
               <i class="fas fa-plus-circle"></i> Publicar mi aviso gratis
             </a>
             <a href="#avisos-publicados" class="btn-hero-outline">
@@ -1656,7 +1472,7 @@
         <div class="step-card">
           <div class="step-number">1</div>
           <h5>Completás el formulario</h5>
-          <p>Tu nombre, WhatsApp, categoría, descripción y hasta 5 fotos de lo que querés vender o alquilar. Todo desde tu celular.</p>
+          <p>Tu nombre, WhatsApp, categoría, descripción y hasta 3 fotos de lo que querés vender o alquilar. Todo desde tu celular.</p>
           <span class="step-time"><i class="fas fa-clock me-1"></i> 5 minutos</span>
         </div>
         <div class="step-connector d-none d-md-flex">→</div>
@@ -1680,7 +1496,7 @@
       </div>
     </div>
     <div class="text-center mt-4">
-      <a href="#publicar" class="btn-hero-free" style="display: inline-flex;">
+      <a href="publicar.html?src=inicio" class="btn-hero-free" style="display: inline-flex;">
         <i class="fas fa-plus-circle"></i> Empezar ahora — es gratis
       </a>
     </div>
@@ -1702,22 +1518,22 @@
       <div class="col-12"><p class="fw-700 mb-2" style="font-family: var(--ff-head); color: var(--brand-blue); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;"><i class="fas fa-home me-2"></i>Propiedades e inmuebles</p></div>
     </div>
     <div class="cat-grid mb-5">
-      <a href="#publicar" class="cat-card" onclick="selectCategory('Casas')">
+      <a href="publicar.html?src=inicio&cat=Casas" class="cat-card">
         <div class="cat-icon-wrap blue"><i class="fas fa-home"></i></div>
         <h6>Casas</h6>
         <span class="cat-count">Venta · Alquiler</span>
       </a>
-      <a href="#publicar" class="cat-card" onclick="selectCategory('Departamentos')">
+      <a href="publicar.html?src=inicio&cat=Departamentos" class="cat-card">
         <div class="cat-icon-wrap blue"><i class="fas fa-building"></i></div>
         <h6>Departamentos</h6>
         <span class="cat-count">Venta · Alquiler</span>
       </a>
-      <a href="#publicar" class="cat-card" onclick="selectCategory('Terrenos')">
+      <a href="publicar.html?src=inicio&cat=Terrenos" class="cat-card">
         <div class="cat-icon-wrap green"><i class="fas fa-map"></i></div>
         <h6>Terrenos</h6>
         <span class="cat-count">Venta · Subdivisión</span>
       </a>
-      <a href="#publicar" class="cat-card" onclick="selectCategory('Galpones y Depósitos')">
+      <a href="publicar.html?src=inicio&cat=Galpones%20y%20Dep%C3%B3sitos" class="cat-card">
         <div class="cat-icon-wrap blue"><i class="fas fa-warehouse"></i></div>
         <h6>Galpones y depósitos</h6>
         <span class="cat-count">Venta · Alquiler</span>
@@ -1728,25 +1544,25 @@
       <div class="col-12"><p class="fw-700 mb-2" style="font-family: var(--ff-head); color: var(--mine-gold); font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;"><i class="fas fa-hammer me-2"></i>Sector minero — exclusivo San Juan</p></div>
     </div>
     <div class="cat-grid">
-      <a href="#publicar" class="cat-card mining" onclick="selectCategory('Equipos y Maquinaria Minera')">
+      <a href="publicar.html?src=inicio&cat=Equipos%20y%20Maquinaria%20Minera" class="cat-card mining">
         <div class="cat-badge">ÚNICO</div>
         <div class="cat-icon-wrap gold"><i class="fas fa-cogs"></i></div>
         <h6>Equipos y maquinaria</h6>
         <span class="cat-count">Venta · Alquiler</span>
       </a>
-      <a href="#publicar" class="cat-card mining" onclick="selectCategory('Herramientas Mineras')">
+      <a href="publicar.html?src=inicio&cat=Herramientas%20Mineras" class="cat-card mining">
         <div class="cat-badge">ÚNICO</div>
         <div class="cat-icon-wrap gold"><i class="fas fa-wrench"></i></div>
         <h6>Herramientas especiales</h6>
         <span class="cat-count">Venta · Alquiler</span>
       </a>
-      <a href="#publicar" class="cat-card mining" onclick="selectCategory('Vehículos y Logística Minera')">
+      <a href="publicar.html?src=inicio&cat=Veh%C3%ADculos%20y%20Log%C3%ADstica%20Minera" class="cat-card mining">
         <div class="cat-badge">ÚNICO</div>
         <div class="cat-icon-wrap gold"><i class="fas fa-truck"></i></div>
         <h6>Vehículos y logística</h6>
         <span class="cat-count">Camiones · 4×4</span>
       </a>
-      <a href="#publicar" class="cat-card mining" onclick="selectCategory('Insumos y Materiales Mineros')">
+      <a href="publicar.html?src=inicio&cat=Insumos%20y%20Materiales%20Mineros" class="cat-card mining">
         <div class="cat-badge">ÚNICO</div>
         <div class="cat-icon-wrap gold"><i class="fas fa-boxes"></i></div>
         <h6>Insumos y materiales</h6>
@@ -1897,7 +1713,7 @@
         </div>
 
         <!-- Botón principal -->
-        <a href="#publicar" style="display: inline-flex; align-items: center; gap: 12px; background: #fbbf24; color: #003366; padding: 18px 40px; border-radius: 14px; font-weight: 800; font-size: 1.15rem; text-decoration: none; box-shadow: 0 8px 32px rgba(251,191,36,0.3); transition: all 0.3s ease; font-family: var(--ff-head);">
+        <a href="publicar.html?src=inicio" style="display: inline-flex; align-items: center; gap: 12px; background: #fbbf24; color: #003366; padding: 18px 40px; border-radius: 14px; font-weight: 800; font-size: 1.15rem; text-decoration: none; box-shadow: 0 8px 32px rgba(251,191,36,0.3); transition: all 0.3s ease; font-family: var(--ff-head);">
           <i class="fas fa-plus-circle" style="font-size: 1.3rem;"></i>
           Publicar mi aviso gratis
         </a>
@@ -1958,7 +1774,7 @@
       <i class="fas fa-folder-open"></i>
       <h5 class="fw-bold">Todavía no hay avisos publicados</h5>
       <p class="text-muted">¡Sé el primero! Publicar es gratis y tarda 5 minutos.</p>
-      <a href="#publicar" class="btn-hero-free mt-3" style="display:inline-flex;">
+      <a href="publicar.html?src=inicio" class="btn-hero-free mt-3" style="display:inline-flex;">
         <i class="fas fa-plus-circle me-2"></i> Publicar ahora
       </a>
     </div>
@@ -1967,7 +1783,7 @@
     <!-- CTA después de los avisos -->
     <div class="text-center mt-5 hidden" id="listingsCta">
       <p class="text-muted mb-3">¿Tenés algo para publicar?</p>
-      <a href="#publicar" class="btn-hero-free" style="display:inline-flex;">
+      <a href="publicar.html?src=inicio" class="btn-hero-free" style="display:inline-flex;">
         <i class="fas fa-plus-circle me-2"></i> Publicar mi aviso gratis
       </a>
     </div>
@@ -2104,7 +1920,7 @@
               <div style="width:36px;height:36px;background:rgba(16,185,129,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
                 <i class="fas fa-check" style="color:var(--brand-green);font-size:0.85rem;"></i>
               </div>
-              <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;">Subí hasta 5 fotos de tu propiedad o equipo.</div>
+              <div style="color:rgba(255,255,255,0.7);font-size:0.9rem;">Subí hasta 3 fotos de tu propiedad o equipo.</div>
             </div>
             <div class="d-flex gap-3 align-items-start">
               <div style="width:36px;height:36px;background:rgba(16,185,129,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -2122,162 +1938,21 @@
         </div>
       </div>
 
-      <!-- Right: form -->
+      <!-- Right: CTA -->
       <div class="col-lg-8">
-        <div class="form-card" id="formContainer">
-          <!-- Step indicator -->
-          <div class="step-indicator mb-4">
-            <div class="step-dot active" id="sd1">1</div>
-            <span class="step-label active" id="sl1">Tu información</span>
-            <div class="step-line" id="sline1"></div>
-            <div class="step-dot" id="sd2">2</div>
-            <span class="step-label" id="sl2">Detalles del aviso</span>
+        <div class="form-card" style="text-align:center;">
+          <div style="width:76px;height:76px;background:var(--free-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+            <i class="fas fa-paper-plane" style="font-size:1.9rem;color:var(--free-green);"></i>
           </div>
-
-          <!-- STEP 1 -->
-          <div id="step1">
-            <h4 class="fw-800 mb-4" style="font-family: var(--ff-head);">¿Quién publicás?</h4>
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Nombre y apellido *</label>
-                <input type="text" id="pub_nombre" class="form-control" placeholder="Juan García" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">WhatsApp de contacto *</label>
-                <div class="input-group">
-                  <span class="input-group-text" style="border:2px solid var(--border);border-right:none;border-radius:var(--radius-sm) 0 0 var(--radius-sm);">+54</span>
-                  <input type="tel" id="pub_telefono" class="form-control" placeholder="264 5555555" required style="border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Categoría *</label>
-                <select id="pub_categoria" class="form-select" required>
-                  <option value="">Elegí una categoría</option>
-                  <optgroup label="🏠 Inmuebles">
-                    <option value="Casas">Casas</option>
-                    <option value="Departamentos">Departamentos</option>
-                    <option value="Terrenos">Terrenos</option>
-                    <option value="Galpones y Depósitos">Galpones y depósitos</option>
-                    <option value="Quintas y Fincas">Quintas y fincas</option>
-                    <option value="Locales y Oficinas">Locales y oficinas</option>
-                  </optgroup>
-                  <optgroup label="⛏️ Sector Minero">
-                    <option value="Equipos y Maquinaria Minera">Equipos y maquinaria minera</option>
-                    <option value="Herramientas Mineras">Herramientas mineras</option>
-                    <option value="Vehículos y Logística Minera">Vehículos y logística minera</option>
-                    <option value="Insumos y Materiales Mineros">Insumos y materiales mineros</option>
-                    <option value="Propiedades con Concesión Minera">Propiedades con concesión minera</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label">Tipo de operación *</label>
-                <select id="pub_operacion" class="form-select" required>
-                  <option value="">¿Qué querés hacer?</option>
-                  <option value="Venta">Vender</option>
-                  <option value="Alquiler">Alquilar</option>
-                  <option value="Busco">Busco / Necesito</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label">Título del aviso *</label>
-                <input type="text" id="pub_titulo" class="form-control" placeholder="Ej: Casa 3 ambientes en Rivadavia con patio" maxlength="80" required>
-                <div class="char-counter"><span id="titulo_count">0</span>/80 caracteres</div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-end mt-4">
-              <button class="btn-next-step" onclick="goToStep2()">
-                Siguiente: Detalles del aviso <i class="fas fa-arrow-right ms-2"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- STEP 2 -->
-          <div id="step2" class="hidden">
-            <h4 class="fw-800 mb-4" style="font-family: var(--ff-head);">Contanos sobre lo que publicás</h4>
-            <div class="row g-3">
-              <div class="col-md-4">
-                <label class="form-label">Precio</label>
-                <input type="number" id="pub_precio" class="form-control" placeholder="0" min="0">
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Moneda</label>
-                <select id="pub_moneda" class="form-select">
-                  <option value="ARS">Pesos (ARS)</option>
-                  <option value="USD">Dólares (USD)</option>
-                  <option value="Consultar">A consultar</option>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label class="form-label">Zona / Ubicación *</label>
-                <select id="pub_zona" class="form-select" required>
-                  <option value="">Elegí zona</option>
-                  <option value="Capital">Capital</option>
-                  <option value="Rivadavia">Rivadavia</option>
-                  <option value="Rawson">Rawson</option>
-                  <option value="Chimbas">Chimbas</option>
-                  <option value="Santa Lucía">Santa Lucía</option>
-                  <option value="Caucete">Caucete</option>
-                  <option value="Jáchal">Jáchal</option>
-                  <option value="Valle Fértil">Valle Fértil</option>
-                  <option value="Iglesia">Iglesia</option>
-                  <option value="Otra zona">Otra zona</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label">Descripción completa *</label>
-                <textarea id="pub_descripcion" class="form-control" rows="5"
-                  placeholder="Describí bien lo que publicás: características, estado, medidas, año, marca (para equipos), lo que considerés importante para el comprador..."
-                  maxlength="1000" required></textarea>
-                <div class="char-counter"><span id="desc_count">0</span>/1000 caracteres</div>
-              </div>
-              <div class="col-12">
-                <label class="form-label">Fotos (hasta 3)</label>
-                <input type="file" id="pub_fotos" accept="image/jpeg,image/png,image/webp" multiple style="display:none;" onchange="previewPhotos(this)">
-                <div class="photo-upload-area" onclick="document.getElementById('pub_fotos').click()">
-                  <i class="fas fa-camera d-block"></i>
-                  <p>Tocá para agregar fotos</p>
-                  <small>JPG, PNG, WEBP — Máx. 3 fotos · 5MB cada una</small>
-                </div>
-                <div class="photo-previews" id="photoPreviews"></div>
-              </div>
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="pub_acepto" required>
-                  <label class="form-check-label" for="pub_acepto" style="font-size:0.85rem;">
-                    Acepto que San Juan Propiedades & Minería publique mi aviso en su plataforma. Confirmo que soy el propietario o tengo autorización para publicar este artículo.
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="d-flex gap-3 mt-4 flex-wrap">
-              <button class="btn-back-step" onclick="goToStep1()">
-                <i class="fas fa-arrow-left me-2"></i> Volver
-              </button>
-              <button class="btn-submit-free flex-fill" id="submitBtn" onclick="submitParticular()">
-                <i class="fas fa-paper-plane me-2"></i> Publicar mi aviso gratis
-              </button>
-            </div>
-          </div>
-
-          <!-- SUCCESS STATE (hidden until submitted) -->
-          <div id="formSuccess" class="hidden form-success">
-            <div class="success-icon"><i class="fas fa-check"></i></div>
-            <h4>¡Tu aviso fue publicado!</h4>
-            <p class="mb-4">Ya aparece en el sitio. Los interesados pueden verlo y contactarte por WhatsApp directamente.</p>
-            <div class="p-3 rounded" style="background:var(--surface);border:1px solid var(--border);">
-              <p class="mb-2" style="font-size:0.85rem;color:var(--text-muted);">¿Querés acelerar el proceso? Escribinos directamente:</p>
-              <a id="waSuccessLink" href="https://wa.me/5492645304372" target="_blank"
-                 style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;padding:12px 24px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;">
-                <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
-              </a>
-            </div>
-            <button onclick="resetForm()" class="btn-back-step mt-4">
-              <i class="fas fa-plus me-2"></i> Publicar otro aviso
-            </button>
-          </div>
-
-        </div><!-- /form-card -->
+          <h3 style="font-family:var(--ff-head);font-weight:800;font-size:1.6rem;color:var(--text-dark);margin-bottom:12px;">Publicá en menos de 5 minutos</h3>
+          <p style="color:var(--text-muted);max-width:460px;margin:0 auto 32px;font-size:1rem;line-height:1.6;">
+            Contanos qué vendés o alquilás, sumá hasta 3 fotos y tu aviso queda online al instante, visible para quien lo esté buscando.
+          </p>
+          <a href="publicar.html?src=inicio" class="btn-hero-free" style="justify-content:center;width:100%;max-width:380px;margin:0 auto;padding:18px 32px;font-size:1.1rem;">
+            <i class="fas fa-plus-circle"></i> Publicar mi aviso gratis
+          </a>
+          <p style="margin-top:20px;font-size:0.85rem;color:var(--text-muted);">Sin registro. Sin costo. Nunca.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2398,8 +2073,8 @@
       </div>
       <div class="col-md-2">
         <p class="fw-700 mb-3" style="font-family:var(--ff-head);font-size:0.85rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;">Plataforma</p>
-        <a href="#publicar" class="footer-link">Publicar aviso</a>
-        <a href="publicar.html" class="footer-link">Por qué publicar acá</a>
+        <a href="publicar.html?src=inicio" class="footer-link">Publicar aviso</a>
+        <a href="publicar.html?src=inicio" class="footer-link">Por qué publicar acá</a>
         <a href="index.html" class="footer-link">Inmobiliaria</a>
         <a href="index.html#tasacion" class="footer-link">Tasación gratis</a>
         <a href="index.html#calculadora" class="footer-link">Calcular cuota</a>
@@ -2431,7 +2106,7 @@
      MOBILE STICKY BAR
 =========================== -->
 <div class="mobile-sticky d-lg-none">
-  <a href="#publicar" class="mobile-sticky-btn primary">
+  <a href="publicar.html?src=inicio" class="mobile-sticky-btn primary">
     <i class="fas fa-plus-circle"></i> Publicar gratis
   </a>
   <a href="https://wa.me/5492645304372?text=Hola!%20Tengo%20algo%20para%20publicar%20en%20la%20sección%20de%20particulares." target="_blank" class="mobile-sticky-btn secondary">
@@ -2450,7 +2125,7 @@
     </div>
     <h4 style="text-align:center;margin-bottom:8px;">¿Tenés algo para vender o alquilar?</h4>
     <p style="text-align:center;">Publicalo gratis en el sitio. 5 minutos y tu aviso está en internet, visible para quienes realmente buscan lo que vos tenés.</p>
-    <a href="#publicar" class="btn-hero-free w-100 justify-content-center mb-3" onclick="closeExit()">
+    <a href="publicar.html?src=inicio" class="btn-hero-free w-100 justify-content-center mb-3" onclick="closeExit()">
       <i class="fas fa-plus-circle"></i> Publicar mi aviso ahora
     </a>
     <p class="exit-dismiss" onclick="closeExit()">No gracias, prefiero que me pierdan entre los posts de Instagram</p>
@@ -2484,7 +2159,7 @@
   =========================== */
   const counters = [
     { el: 'cnt1', target: 24, suffix: '', prefix: '' },
-    { el: 'cnt2', target: 8, suffix: '', prefix: '' },
+    { el: 'cnt2', target: 11, suffix: '', prefix: '' },
     { el: 'cnt3', target: 0, suffix: '', prefix: '' }, // "0%" stays
   ];
 
@@ -2503,7 +2178,7 @@
   const statsObs = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
       document.getElementById('cnt1') && animateCount(document.getElementById('cnt1'), 24);
-      document.getElementById('cnt2') && animateCount(document.getElementById('cnt2'), 8);
+      document.getElementById('cnt2') && animateCount(document.getElementById('cnt2'), 11);
       document.getElementById('cnt3') && animateCount(document.getElementById('cnt3'), 0);
       statsObs.disconnect();
     }
@@ -2511,247 +2186,6 @@
 
   const statsStrip = document.querySelector('.stats-strip');
   if (statsStrip) statsObs.observe(statsStrip);
-
-  /* ===========================
-     CHAR COUNTERS
-  =========================== */
-  document.getElementById('pub_titulo')?.addEventListener('input', function() {
-    document.getElementById('titulo_count').textContent = this.value.length;
-  });
-  document.getElementById('pub_descripcion')?.addEventListener('input', function() {
-    document.getElementById('desc_count').textContent = this.value.length;
-  });
-
-  /* ===========================
-     CONTENT FILTER (palabras prohibidas)
-  =========================== */
-  const BAD_WORDS = [
-    'sexo','porno','desnudo','desnuda','xxx','erotico','erotica','coger','puta','puto','trola','trolo','maricon','concha','pija','verga','chota','mierda','carajo','conchudo','forro','boludo','pelotudo','idiota','estupido','estupida','retardado','negro de mierda','negro','chino de mierda','mogolico','down','autista usado como insulto','putita','putito','zorra','perra','maldito','maldita','hijo de puta','hdp','la concha de tu madre','concha de tu madre','ctm','la puta que te pario','lpqtp','cagar','cagada','mear','meada','pedo','orto','ojete','culiado','culiada','chupapig','chupala','chupame','la concha','la pija','verga','pajero','pajera','paja','tetas','tetona','culo','culon','nalgas','nalgon','pene','vagina','clitoris','semen','esperma','masturbar','masturbacion','orgasmo','eyacular','follar','follada','follador','cachonda','cachondo','caliente','hot','sexy','sexual explicito','child','menor','pedofilia','violacion','violar','abuso sexual','pornografia infantil','cp','loli','snuff','necrofilia','zoofilia','bestialidad','escatologico','coprofilia','urofilia'
-  ];
-
-  function containsBadWords(text) {
-    if (!text) return false;
-    const lower = text.toLowerCase();
-    return BAD_WORDS.some(word => lower.includes(word.toLowerCase()));
-  }
-
-  function filterBadWords(text) {
-    if (!text) return text;
-    let filtered = text;
-    BAD_WORDS.forEach(word => {
-      const regex = new RegExp(word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-      filtered = filtered.replace(regex, '***');
-    });
-    return filtered;
-  }
-  function selectCategory(cat) {
-    const el = document.getElementById('pub_categoria');
-    if (el) {
-      for (let i = 0; i < el.options.length; i++) {
-        if (el.options[i].value === cat) { el.selectedIndex = i; break; }
-      }
-    }
-  }
-
-  /* ===========================
-     FORM WIZARD
-  =========================== */
-  function goToStep2() {
-    // Validate step 1
-    const nombre = document.getElementById('pub_nombre').value.trim();
-    const telefono = document.getElementById('pub_telefono').value.trim();
-    const categoria = document.getElementById('pub_categoria').value;
-    const operacion = document.getElementById('pub_operacion').value;
-    const titulo = document.getElementById('pub_titulo').value.trim();
-
-    if (!nombre) return alert('Por favor ingresá tu nombre.');
-    if (containsBadWords(nombre)) return alert('Tu nombre contiene palabras no permitidas.');
-    if (!telefono || telefono.length < 8) return alert('Por favor ingresá un WhatsApp válido.');
-    if (!categoria) return alert('Por favor seleccioná una categoría.');
-    if (!operacion) return alert('Por favor seleccioná el tipo de operación.');
-    if (!titulo || titulo.length < 10) return alert('El título debe tener al menos 10 caracteres.');
-    if (containsBadWords(titulo)) return alert('El título contiene palabras no permitidas.');
-
-    document.getElementById('step1').classList.add('hidden');
-    document.getElementById('step2').classList.remove('hidden');
-
-    // Update indicators
-    document.getElementById('sd1').className = 'step-dot done';
-    document.getElementById('sd1').innerHTML = '<i class="fas fa-check"></i>';
-    document.getElementById('sl1').className = 'step-label';
-    document.getElementById('sline1').className = 'step-line done';
-    document.getElementById('sd2').className = 'step-dot active';
-    document.getElementById('sl2').className = 'step-label active';
-
-    window.scrollTo({ top: document.getElementById('publicar').offsetTop - 80, behavior: 'smooth' });
-  }
-
-  function goToStep1() {
-    document.getElementById('step2').classList.add('hidden');
-    document.getElementById('step1').classList.remove('hidden');
-
-    document.getElementById('sd1').className = 'step-dot active';
-    document.getElementById('sd1').textContent = '1';
-    document.getElementById('sl1').className = 'step-label active';
-    document.getElementById('sline1').className = 'step-line';
-    document.getElementById('sd2').className = 'step-dot';
-    document.getElementById('sl2').className = 'step-label';
-  }
-
-  /* ===========================
-     PHOTO PREVIEW
-  =========================== */
-  let selectedFiles = [];
-
-  function previewPhotos(input) {
-    const allFiles = Array.from(input.files);
-    // Validar: solo imagenes, no videos
-    const invalid = allFiles.filter(f => !f.type.startsWith('image/'));
-    if (invalid.length > 0) {
-      alert('Solo se permiten archivos de imagen (JPG, PNG, WEBP). No se permiten videos.');
-      input.value = '';
-      return;
-    }
-    // Validar: maximo 3 fotos
-    if (allFiles.length > 3) {
-      alert('Solo se permiten hasta 3 fotos por aviso.');
-    }
-    const files = allFiles.slice(0, 3);
-    selectedFiles = files;
-    const container = document.getElementById('photoPreviews');
-    container.innerHTML = '';
-
-    files.forEach((file, index) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const item = document.createElement('div');
-        item.className = 'photo-preview-item';
-        item.innerHTML = `
-          <img src="${e.target.result}" alt="Foto ${index + 1}">
-          <button class="remove-photo" onclick="removePhoto(${index})">×</button>
-        `;
-        container.appendChild(item);
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function removePhoto(index) {
-    selectedFiles.splice(index, 1);
-    const dt = new DataTransfer();
-    selectedFiles.forEach(f => dt.items.add(f));
-    document.getElementById('pub_fotos').files = dt.files;
-    previewPhotos({ files: selectedFiles });
-  }
-
-  /* ===========================
-     FORM SUBMISSION (con Supabase)
-  =========================== */
-  async function submitParticular() {
-    const zona        = document.getElementById('pub_zona').value;
-    let descripcion = document.getElementById('pub_descripcion').value.trim();
-    const acepto      = document.getElementById('pub_acepto').checked;
-    const telefonoRaw = document.getElementById('pub_telefono').value.trim();
-
-    if (!telefonoRaw || telefonoRaw.length < 8) return alert('Por favor ingresá un número de WhatsApp válido. Es obligatorio para que los interesados puedan contactarte.');
-    if (!zona)                                   return alert('Por favor seleccioná la zona.');
-    if (!descripcion || descripcion.length < 20) return alert('La descripción debe tener al menos 20 caracteres.');
-    if (!acepto)                                 return alert('Debés aceptar los términos para publicar.');
-
-    // Validar palabras obscenas en descripción
-    if (containsBadWords(descripcion)) {
-      alert('Tu descripción contiene palabras no permitidas. Por favor revisala y volvé a intentar.');
-      return;
-    }
-    // Filtrar palabras obscenas (por si acaso)
-    descripcion = filterBadWords(descripcion);
-
-    const formData = {
-      nombre:    document.getElementById('pub_nombre').value.trim(),
-      telefono:  '+54' + telefonoRaw,
-      categoria: document.getElementById('pub_categoria').value,
-      operacion: document.getElementById('pub_operacion').value,
-      titulo:    document.getElementById('pub_titulo').value.trim(),
-      precio:    document.getElementById('pub_precio').value || 'A consultar',
-      moneda:    document.getElementById('pub_moneda').value,
-      zona,
-      descripcion,
-    };
-
-    const btn = document.getElementById('submitBtn');
-    const origHTML = btn.innerHTML;
-    btn.disabled = true;
-
-    try {
-      // 1. Subir fotos a Supabase Storage
-      let fotoUrls = [];
-      if (selectedFiles.length > 0) {
-        btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status"></span>Subiendo ${selectedFiles.length} foto(s)...`;
-        fotoUrls = await uploadPhotos(selectedFiles);
-      }
-
-      // 2. Guardar aviso en Supabase DB
-      btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span>Guardando tu aviso...';
-      if (sb) {
-        const { error } = await sb.from('listings').insert([{
-          nombre: formData.nombre, telefono: formData.telefono,
-          categoria: formData.categoria, operacion: formData.operacion,
-          titulo: formData.titulo, precio: formData.precio,
-          moneda: formData.moneda, zona: formData.zona,
-          descripcion: formData.descripcion, fotos: fotoUrls, status: 'aprobado'
-        }]);
-        if (error) throw error;
-      }
-
-      // 3. Éxito + notificar admin por WhatsApp
-      showSuccess({ ...formData, fotoCount: fotoUrls.length });
-      const msg = buildWAMessage({ ...formData, fotoCount: fotoUrls.length });
-      setTimeout(() => window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank'), 1000);
-
-    } catch(err) {
-      console.error('Error al publicar:', err);
-      btn.disabled = false;
-      btn.innerHTML = origHTML;
-      const msg = buildWAMessage({ ...formData, fotoCount: 0 });
-      const ok = confirm('Hubo un error al guardar. ¿Querés enviarnos el aviso por WhatsApp directamente?');
-      if (ok) window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
-    }
-  }
-
-  function showSuccess(data) {
-    document.getElementById('step2').classList.add('hidden');
-    document.getElementById('formSuccess').classList.remove('hidden');
-    document.querySelector('.step-indicator').style.display = 'none';
-    const waMsg = buildWAMessage(data);
-    document.getElementById('waSuccessLink').href = `https://wa.me/${WA_NUMBER}?text=${waMsg}`;
-  }
-
-  function buildWAMessage(data) {
-    const msg =
-      `*Nuevo aviso — San Juan Propiedades & Minería*\n\n` +
-      `👤 *Nombre:* ${data.nombre}\n` +
-      `📱 *WhatsApp:* ${data.telefono}\n` +
-      `📂 *Categoría:* ${data.categoria}\n` +
-      `🔖 *Operación:* ${data.operacion}\n` +
-      `📌 *Título:* ${data.titulo}\n` +
-      `💰 *Precio:* ${data.precio} ${data.moneda || ''}\n` +
-      `📍 *Zona:* ${data.zona}\n` +
-      `🖼 *Fotos subidas:* ${data.fotoCount || 0}\n\n` +
-      `_El aviso ya fue publicado automáticamente. Revisá el panel admin si necesitás eliminarlo._`;
-    return encodeURIComponent(msg);
-  }
-
-  function resetForm() {
-    document.getElementById('formSuccess').classList.add('hidden');
-    document.getElementById('step1').classList.remove('hidden');
-    document.querySelector('.step-indicator').style.display = '';
-    document.getElementById('formContainer').querySelectorAll('input, select, textarea').forEach(el => el.value = '');
-    document.getElementById('photoPreviews').innerHTML = '';
-    selectedFiles = [];
-    document.getElementById('titulo_count').textContent = '0';
-    document.getElementById('desc_count').textContent = '0';
-    goToStep1();
-  }
 
   /* ===========================
      CONTACT PARTICULAR (sample listings)
@@ -2818,28 +2252,6 @@
   }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
   animEls.forEach(el => appearObs.observe(el));
-
-  /* ===========================
-     SUPABASE: SUBIR FOTOS
-  =========================== */
-  async function uploadPhotos(files) {
-    if (!sb) return [];
-    const urls = [];
-    for (const file of files) {
-      try {
-        const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '');
-        const name = `${Date.now()}_${Math.random().toString(36).slice(2,8)}.${ext}`;
-        const { error } = await sb.storage.from('listing-photos').upload(name, file, {
-          cacheControl: '31536000', upsert: false
-        });
-        if (!error) {
-          const { data: { publicUrl } } = sb.storage.from('listing-photos').getPublicUrl(name);
-          urls.push(publicUrl);
-        }
-      } catch(e) { /* omitir foto con error */ }
-    }
-    return urls;
-  }
 
   /* ===========================
      SUPABASE: CARGAR AVISOS

@@ -221,19 +221,26 @@ h1.hero-t em::after{
 .step-title{font-family:var(--ff-h);font-weight:700;font-size:15.5px;color:var(--navy)}
 .step-sub{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
 
-label.lbl{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
-label.lbl .opt{font-weight:500;color:var(--ink-soft)}
+label.lbl{display:block;font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
+label.lbl .opt{font-weight:500;color:var(--ink-soft);font-size:13px}
 .ctrl{
   width:100%;font-family:var(--ff);font-size:16px;color:var(--ink);
   padding:13px 14px;border:1.5px solid #dde4ee;border-radius:12px;background:#fff;
   transition:.15s;appearance:none
 }
 .ctrl:focus{outline:none;border-color:var(--navy-soft);box-shadow:0 0 0 4px rgba(10,74,143,.10)}
-.ctrl::placeholder{color:#9aa7b8}
+.ctrl::placeholder{color:#b3bcc9}
 select.ctrl{
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>");
+  font-weight:600;color:var(--ink);cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230a4a8f' stroke-width='2.8' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>");
   background-repeat:no-repeat;background-position:right 14px center;padding-right:38px
 }
+select.ctrl:invalid,select.ctrl.ph{color:#8b96a6;font-weight:500}
+.field-group{
+  display:grid;grid-template-columns:1fr 1fr;gap:15px;
+  background:#f6f8fb;border:1px solid #e9edf4;border-radius:14px;padding:16px
+}
+@media(max-width:520px){.field-group{grid-template-columns:1fr}}
 textarea.ctrl{resize:vertical;min-height:118px;line-height:1.55}
 .prefix{display:flex;align-items:stretch}
 .prefix span{
@@ -531,73 +538,77 @@ footer a:hover{color:#fff;text-decoration:underline}
                   <div class="counter"><span id="c_titulo">0</span>/80</div>
                 </div>
 
-                <div class="f-half-m">
-                  <label class="lbl" for="f_categoria">Categoría *</label>
-                  <select class="ctrl" id="f_categoria" required>
-                    <option value="">Elegí una</option>
-                    <optgroup label="Inmuebles">
-                      <option value="Casas">Casas</option>
-                      <option value="Departamentos">Departamentos</option>
-                      <option value="Terrenos">Terrenos</option>
-                      <option value="Galpones y Depósitos">Galpones y depósitos</option>
-                      <option value="Quintas y Fincas">Quintas y fincas</option>
-                      <option value="Locales y Oficinas">Locales y oficinas</option>
-                    </optgroup>
-                    <optgroup label="Sector minero">
-                      <option value="Equipos y Maquinaria Minera">Equipos y maquinaria minera</option>
-                      <option value="Herramientas Mineras">Herramientas mineras</option>
-                      <option value="Vehículos y Logística Minera">Vehículos y logística minera</option>
-                      <option value="Insumos y Materiales Mineros">Insumos y materiales mineros</option>
-                      <option value="Propiedades con Concesión Minera">Propiedades con concesión minera</option>
-                    </optgroup>
-                  </select>
-                </div>
-
-                <div class="f-half-m">
-                  <label class="lbl" for="f_operacion">Quiero *</label>
-                  <select class="ctrl" id="f_operacion" required>
-                    <option value="">Elegí una</option>
-                    <option value="Venta">Vender</option>
-                    <option value="Alquiler">Alquilar</option>
-                    <option value="Busco">Busco / Necesito</option>
-                  </select>
-                </div>
-
-                <div class="f-half-m">
-                  <label class="lbl" for="f_zona">Zona *</label>
-                  <select class="ctrl" id="f_zona" required>
-                    <option value="">Elegí zona</option>
-                    <option value="Capital">Capital</option>
-                    <option value="Rivadavia">Rivadavia</option>
-                    <option value="Rawson">Rawson</option>
-                    <option value="Chimbas">Chimbas</option>
-                    <option value="Santa Lucía">Santa Lucía</option>
-                    <option value="Pocito">Pocito</option>
-                    <option value="Caucete">Caucete</option>
-                    <option value="Albardón">Albardón</option>
-                    <option value="9 de Julio">9 de Julio</option>
-                    <option value="San Martín">San Martín</option>
-                    <option value="Angaco">Angaco</option>
-                    <option value="Ullum">Ullum</option>
-                    <option value="Zonda">Zonda</option>
-                    <option value="Calingasta">Calingasta</option>
-                    <option value="Iglesia">Iglesia</option>
-                    <option value="Jáchal">Jáchal</option>
-                    <option value="Valle Fértil">Valle Fértil</option>
-                    <option value="25 de Mayo">25 de Mayo</option>
-                    <option value="Sarmiento">Sarmiento</option>
-                    <option value="Otra zona">Otra zona</option>
-                  </select>
-                </div>
-
-                <div class="f-half-m">
-                  <label class="lbl" for="f_precio">Precio <span class="opt">— opcional</span></label>
-                  <div class="price-wrap">
-                    <select class="ctrl" id="f_moneda" aria-label="Moneda">
-                      <option value="ARS">$ ARS</option>
-                      <option value="USD">USD</option>
+                <div class="f-full field-group">
+                  <div>
+                    <label class="lbl" for="f_categoria">Categoría *</label>
+                    <select class="ctrl" id="f_categoria" required>
+                      <option value="">Elegí una</option>
+                      <optgroup label="Inmuebles">
+                        <option value="Casas">Casas</option>
+                        <option value="Departamentos">Departamentos</option>
+                        <option value="Terrenos">Terrenos</option>
+                        <option value="Galpones y Depósitos">Galpones y depósitos</option>
+                        <option value="Quintas y Fincas">Quintas y fincas</option>
+                        <option value="Locales y Oficinas">Locales y oficinas</option>
+                      </optgroup>
+                      <optgroup label="Sector minero">
+                        <option value="Equipos y Maquinaria Minera">Equipos y maquinaria minera</option>
+                        <option value="Herramientas Mineras">Herramientas mineras</option>
+                        <option value="Vehículos y Logística Minera">Vehículos y logística minera</option>
+                        <option value="Insumos y Materiales Mineros">Insumos y materiales mineros</option>
+                        <option value="Propiedades con Concesión Minera">Propiedades con concesión minera</option>
+                      </optgroup>
                     </select>
-                    <input class="ctrl" type="number" id="f_precio" min="0" placeholder="Dejalo vacío = A consultar">
+                  </div>
+
+                  <div>
+                    <label class="lbl" for="f_operacion">Quiero *</label>
+                    <select class="ctrl" id="f_operacion" required>
+                      <option value="">Elegí una</option>
+                      <option value="Venta">Vender</option>
+                      <option value="Alquiler">Alquilar</option>
+                      <option value="Busco">Busco / Necesito</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="f-full field-group">
+                  <div>
+                    <label class="lbl" for="f_zona">Zona *</label>
+                    <select class="ctrl" id="f_zona" required>
+                      <option value="">Elegí zona</option>
+                      <option value="Capital">Capital</option>
+                      <option value="Rivadavia">Rivadavia</option>
+                      <option value="Rawson">Rawson</option>
+                      <option value="Chimbas">Chimbas</option>
+                      <option value="Santa Lucía">Santa Lucía</option>
+                      <option value="Pocito">Pocito</option>
+                      <option value="Caucete">Caucete</option>
+                      <option value="Albardón">Albardón</option>
+                      <option value="9 de Julio">9 de Julio</option>
+                      <option value="San Martín">San Martín</option>
+                      <option value="Angaco">Angaco</option>
+                      <option value="Ullum">Ullum</option>
+                      <option value="Zonda">Zonda</option>
+                      <option value="Calingasta">Calingasta</option>
+                      <option value="Iglesia">Iglesia</option>
+                      <option value="Jáchal">Jáchal</option>
+                      <option value="Valle Fértil">Valle Fértil</option>
+                      <option value="25 de Mayo">25 de Mayo</option>
+                      <option value="Sarmiento">Sarmiento</option>
+                      <option value="Otra zona">Otra zona</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="lbl" for="f_precio">Precio <span class="opt">— opcional</span></label>
+                    <div class="price-wrap">
+                      <select class="ctrl" id="f_moneda" aria-label="Moneda">
+                        <option value="ARS">$ ARS</option>
+                        <option value="USD">USD</option>
+                      </select>
+                      <input class="ctrl" type="number" id="f_precio" min="0" placeholder="Dejalo vacío = A consultar">
+                    </div>
                   </div>
                 </div>
 
@@ -989,6 +1000,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
   document.getElementById('ftWa').href =
     'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent('Hola! Tengo una consulta sobre San Juan Propiedades & Minería.');
+
+  /* =========================================================
+     CATEGORÍA PRECARGADA: si llega con ?cat=Casas desde el
+     inicio, se selecciona sola en el formulario.
+  ========================================================= */
+  (function () {
+    try {
+      const cat = new URLSearchParams(location.search).get('cat');
+      if (!cat) return;
+      const sel = document.getElementById('f_categoria');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === cat) { sel.selectedIndex = i; break; }
+      }
+    } catch (e) {}
+  })();
 
   /* =========================================================
      FILTRO DE CONTENIDO
