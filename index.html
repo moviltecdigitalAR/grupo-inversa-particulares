@@ -8,7 +8,9 @@
   <meta property="og:title" content="Publicá Gratis en San Juan | San Juan Propiedades & Minería">
   <meta property="og:description" content="Tus avisos en Instagram duran 24hs. Los nuestros duran hasta que vendés. 100% gratis para particulares de San Juan.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1200&q=80">
+  <meta property="og:image" content="https://sanjuaninmobiliario.com.ar/assets/og-image.jpg">
+  <link rel="icon" href="assets/logo-sjpm.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -112,6 +114,18 @@
       font-size: 1.25rem;
       color: white !important;
       letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .navbar-brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      object-fit: contain;
+      background: white;
+      padding: 2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
     .navbar-brand span { color: var(--brand-green); }
     .navbar-breadcrumb {
@@ -1448,7 +1462,8 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container">
     <a class="navbar-brand" href="index.html">
-      SAN JUAN<span> PROPIEDADES & MINERÍA</span>
+      <img src="assets/logo-sjpm.png" alt="" width="38" height="38">
+      <span>SAN JUAN<span> PROPIEDADES & MINERÍA</span></span>
     </a>
     <div class="d-none d-md-flex align-items-center ms-3">
       <span class="navbar-breadcrumb">/ <strong>Particulares</strong></span>
@@ -2029,9 +2044,9 @@
 </section>
 
 <!-- ===========================
-     TESTIMONIALS
+     TESTIMONIALS  ← temporalmente oculto hasta tener experiencias reales
 =========================== -->
-<section class="testimonials-mini">
+<section class="testimonials-mini" style="display:none;">
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="section-title" style="color:white;">Lo que dicen quienes ya publicaron</h2>
@@ -2368,8 +2383,8 @@
         <p class="footer-sub">El portal de propiedades y minería de San Juan. Publicá gratis como particular.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/sanjuaninmobiliario" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61593016464655" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://wa.me/5492645304372" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="https://www.facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
       <div class="col-md-2">
@@ -2399,7 +2414,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 San Juan Propiedades & Minería · San Juan, Argentina</span>
+      <span>© 2026 San Juan Propiedades & Minería · San Juan, Argentina</span>
       <span class="gratis-footer"><i class="fas fa-check me-1"></i> Publicar es GRATIS</span>
     </div>
   </div>

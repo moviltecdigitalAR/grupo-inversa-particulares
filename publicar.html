@@ -18,15 +18,18 @@
 <meta property="og:title" content="Publicá tu propiedad en San Juan — Gratis y sin comisión">
 <meta property="og:description" content="En redes tu aviso dura tres días. Acá tiene una dirección propia. Publicá gratis en 2 minutos y recibí consultas directo a tu WhatsApp.">
 <meta property="og:url" content="https://sanjuaninmobiliario.com.ar/publicar.html">
-<meta property="og:image" content="https://sanjuaninmobiliario.com.ar/og-publicar.jpg">
+<meta property="og:image" content="https://sanjuaninmobiliario.com.ar/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+
+<link rel="icon" href="assets/logo-sjpm.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Publicá tu propiedad en San Juan — Gratis y sin comisión">
 <meta name="twitter:description" content="En redes tu aviso dura tres días. Acá tiene una dirección propia. Publicá gratis en 2 minutos.">
-<meta name="twitter:image" content="https://sanjuaninmobiliario.com.ar/og-publicar.jpg">
+<meta name="twitter:image" content="https://sanjuaninmobiliario.com.ar/assets/og-image.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +46,10 @@
       "name": "San Juan Propiedades & Minería",
       "url": "https://sanjuaninmobiliario.com.ar/",
       "areaServed": { "@type": "State", "name": "San Juan, Argentina" },
-      "sameAs": ["https://www.instagram.com/sanjuanpropiedades"]
+      "sameAs": [
+        "https://www.instagram.com/sanjuaninmobiliario",
+        "https://www.facebook.com/profile.php?id=61593016464655"
+      ]
     },
     {
       "@type": "WebPage",
@@ -121,9 +127,11 @@ a{color:inherit}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none}
 .brand-mark{
   width:38px;height:38px;border-radius:11px;flex:0 0 38px;
-  background:linear-gradient(145deg,var(--navy) 0%,var(--navy-soft) 100%);
-  display:grid;place-items:center;box-shadow:0 4px 12px -3px rgba(0,34,77,.45);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  box-shadow:0 4px 12px -3px rgba(0,34,77,.45);
 }
+.brand-mark img{width:100%;height:100%;object-fit:contain;display:block}
 .brand-name{font-family:var(--ff-h);font-weight:700;font-size:15.5px;letter-spacing:-.02em;line-height:1.15}
 .brand-sub{font-size:11.5px;color:var(--ink-soft);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
 .hdr-cta{
@@ -402,13 +410,11 @@ footer a:hover{color:#fff;text-decoration:underline}
   <div class="hdr-in">
     <a class="brand" href="index.html">
       <span class="brand-mark" aria-hidden="true">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>
-        </svg>
+        <img src="assets/logo-sjpm.png" alt="" width="38" height="38">
       </span>
       <span>
         <span class="brand-name">San Juan Propiedades &amp; Minería</span><br>
-        <span class="brand-sub">Portal de la provincia</span>
+        <span class="brand-sub">El portal de propiedades y minería de San Juan</span>
       </span>
     </a>
     <a class="hdr-cta" href="#publicar">Publicar mi propiedad</a>
@@ -863,12 +869,13 @@ footer a:hover{color:#fff;text-decoration:underline}
     <div class="ft-grid">
       <div style="max-width:340px">
         <div style="font-family:var(--ff-h);font-weight:700;color:#fff;font-size:16px;margin-bottom:8px">San Juan Propiedades &amp; Minería</div>
-        <p>El portal de propiedades y del sector minero de la provincia de San Juan. Publicar es gratis para particulares.</p>
+        <p>El portal de propiedades y minería de San Juan. Publicar es gratis para particulares.</p>
       </div>
       <div class="ft-links">
         <a href="index.html">Ver propiedades</a>
         <a href="#publicar">Publicar</a>
-        <a href="https://www.instagram.com/sanjuanpropiedades" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.instagram.com/sanjuaninmobiliario" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61593016464655" target="_blank" rel="noopener">Facebook</a>
         <a id="ftWa" href="#" target="_blank" rel="noopener">Contacto</a>
       </div>
     </div>
@@ -1163,7 +1170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('adLink').value   = link;
 
     const shareMsg =
-      'Estoy publicando mi propiedad en San Juan Propiedades & Minería, el portal de la provincia.\n\n' +
+      'Estoy publicando mi propiedad en San Juan Propiedades & Minería, el portal de propiedades y minería de San Juan.\n\n' +
       'Es gratis, no cobran comisión y el aviso queda online al instante. ' +
       'Si conocés a alguien que quiere vender o alquilar, le puede servir:\n' +
       PORTAL_URL.replace(/index\.html$/, '') + 'publicar.html';
