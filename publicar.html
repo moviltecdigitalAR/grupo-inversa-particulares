@@ -209,6 +209,18 @@ h1.hero-t em::after{
 .f-full{grid-column:1/-1}
 @media(max-width:520px){.f-grid{grid-template-columns:1fr}.f-half-m{grid-column:1/-1}}
 
+.form-step{border:1px solid #e8edf5;border-radius:18px;padding:20px;background:#fbfcff;margin-bottom:18px}
+.form-step:last-of-type{margin-bottom:0}
+.step-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #eef2f9}
+.step-number{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(145deg,var(--navy-2),var(--navy));
+  color:#fff;display:grid;place-items:center;font-family:var(--ff-h);font-weight:700;font-size:14px;
+  flex:0 0 32px
+}
+.step-title{font-family:var(--ff-h);font-weight:700;font-size:15.5px;color:var(--navy)}
+.step-sub{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+
 label.lbl{display:block;font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
 label.lbl .opt{font-weight:500;color:var(--ink-soft)}
 .ctrl{
@@ -229,26 +241,32 @@ textarea.ctrl{resize:vertical;min-height:118px;line-height:1.55}
   background:#f2f5fa;border:1.5px solid #dde4ee;border-right:0;border-radius:12px 0 0 12px
 }
 .prefix .ctrl{border-radius:0 12px 12px 0}
+.price-wrap{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:start}
+@media(max-width:520px){.price-wrap{grid-template-columns:1fr}}
 .hint{font-size:12.5px;color:var(--ink-soft);margin-top:6px}
-.counter{font-size:12px;color:var(--ink-soft);text-align:right;margin-top:5px}
+.counter{font-size:11px;color:#9aa7b8;text-align:right;margin-top:4px}
 
 .drop{
-  border:2px dashed #cfdaea;border-radius:14px;background:#fafcff;padding:22px 16px;
-  text-align:center;cursor:pointer;transition:.18s
+  border:2px dashed #b8c8e0;border-radius:16px;background:linear-gradient(180deg,#f8fbff 0%,#f0f6ff 100%);
+  padding:28px 18px;text-align:center;cursor:pointer;transition:.18s
 }
-.drop:hover{border-color:var(--navy-soft);background:#f4f8ff}
-.drop b{display:block;font-size:15px;color:var(--navy);margin-top:9px}
-.drop small{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px}
-.thumbs{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-.thumb{position:relative;width:82px;height:82px;border-radius:11px;overflow:hidden;border:1px solid var(--line)}
+.drop:hover{border-color:var(--navy-soft);background:linear-gradient(180deg,#f4f9ff 0%,#e8f2ff 100%)}
+.drop b{display:block;font-size:16px;color:var(--navy);margin-top:11px}
+.drop small{display:block;font-size:13px;color:var(--ink-soft);margin-top:5px}
+.drop-icon{
+  width:56px;height:56px;border-radius:16px;background:#fff;display:grid;place-items:center;
+  margin:0 auto;box-shadow:0 4px 14px -6px rgba(10,74,143,.25)
+}
+.thumbs{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}
+.thumb{position:relative;width:88px;height:88px;border-radius:13px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-s)}
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb button{
-  position:absolute;top:4px;right:4px;width:22px;height:22px;border-radius:50%;border:0;
-  background:rgba(15,23,42,.78);color:#fff;font-size:14px;line-height:1;cursor:pointer
+  position:absolute;top:5px;right:5px;width:24px;height:24px;border-radius:50%;border:0;
+  background:rgba(15,23,42,.78);color:#fff;font-size:14px;line-height:1;cursor:pointer;display:grid;place-items:center
 }
 
-.check{display:flex;gap:11px;align-items:flex-start;font-size:13.5px;color:var(--ink-mid);line-height:1.5}
-.check input{width:19px;height:19px;margin:2px 0 0;flex:0 0 19px;accent-color:var(--navy-2);cursor:pointer}
+.check{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--ink-mid);line-height:1.5;background:#f8f9fb;border:1px solid #e8edf5;border-radius:12px;padding:14px}
+.check input{width:20px;height:20px;margin:2px 0 0;flex:0 0 20px;accent-color:var(--navy-2);cursor:pointer}
 
 .alert{
   display:none;gap:10px;align-items:flex-start;background:#fff4f2;border:1px solid #f5c6bd;
@@ -276,6 +294,11 @@ textarea.ctrl{resize:vertical;min-height:118px;line-height:1.55}
   margin-top:16px;font-size:12.5px;color:var(--ink-soft)
 }
 .form-trust span{display:inline-flex;align-items:center;gap:6px}
+
+.submit-wrap{
+  background:linear-gradient(180deg,#f8f9fb 0%,#fff 100%);
+  border:1px solid #e8edf5;border-radius:18px;padding:22px;margin-top:18px
+}
 
 /* ---------- SEALS BAR ---------- */
 .seals{background:var(--navy);color:#fff;padding:18px 0}
@@ -490,148 +513,188 @@ footer a:hover{color:#fff;text-decoration:underline}
           </p>
 
           <form id="pubForm" novalidate>
-            <div class="f-grid">
-
-              <div class="f-full">
-                <label class="lbl" for="f_titulo">¿Qué estás publicando? *</label>
-                <input class="ctrl" type="text" id="f_titulo" maxlength="80" required
-                       placeholder="Ej: Casa 3 dormitorios en Rivadavia con patio y cochera">
-                <div class="counter"><span id="c_titulo">0</span>/80</div>
+            <!-- PASO 1: LO QUE PUBLICÁS -->
+            <div class="form-step">
+              <div class="step-header">
+                <span class="step-number">1</span>
+                <div>
+                  <div class="step-title">Lo que publicás</div>
+                  <div class="step-sub">Título, tipo de aviso, zona y precio</div>
+                </div>
               </div>
+              <div class="f-grid">
 
-              <div class="f-half-m">
-                <label class="lbl" for="f_categoria">Categoría *</label>
-                <select class="ctrl" id="f_categoria" required>
-                  <option value="">Elegí una</option>
-                  <optgroup label="Inmuebles">
-                    <option value="Casas">Casas</option>
-                    <option value="Departamentos">Departamentos</option>
-                    <option value="Terrenos">Terrenos</option>
-                    <option value="Galpones y Depósitos">Galpones y depósitos</option>
-                    <option value="Quintas y Fincas">Quintas y fincas</option>
-                    <option value="Locales y Oficinas">Locales y oficinas</option>
-                  </optgroup>
-                  <optgroup label="Sector minero">
-                    <option value="Equipos y Maquinaria Minera">Equipos y maquinaria minera</option>
-                    <option value="Herramientas Mineras">Herramientas mineras</option>
-                    <option value="Vehículos y Logística Minera">Vehículos y logística minera</option>
-                    <option value="Insumos y Materiales Mineros">Insumos y materiales mineros</option>
-                    <option value="Propiedades con Concesión Minera">Propiedades con concesión minera</option>
-                  </optgroup>
-                </select>
-              </div>
+                <div class="f-full">
+                  <label class="lbl" for="f_titulo">¿Qué estás publicando? *</label>
+                  <input class="ctrl" type="text" id="f_titulo" maxlength="80" required
+                         placeholder="Ej: Casa 3 dormitorios en Rivadavia con patio y cochera">
+                  <div class="counter"><span id="c_titulo">0</span>/80</div>
+                </div>
 
-              <div class="f-half-m">
-                <label class="lbl" for="f_operacion">Quiero *</label>
-                <select class="ctrl" id="f_operacion" required>
-                  <option value="">Elegí una</option>
-                  <option value="Venta">Vender</option>
-                  <option value="Alquiler">Alquilar</option>
-                  <option value="Busco">Busco / Necesito</option>
-                </select>
-              </div>
-
-              <div class="f-half-m">
-                <label class="lbl" for="f_zona">Zona *</label>
-                <select class="ctrl" id="f_zona" required>
-                  <option value="">Elegí zona</option>
-                  <option value="Capital">Capital</option>
-                  <option value="Rivadavia">Rivadavia</option>
-                  <option value="Rawson">Rawson</option>
-                  <option value="Chimbas">Chimbas</option>
-                  <option value="Santa Lucía">Santa Lucía</option>
-                  <option value="Pocito">Pocito</option>
-                  <option value="Caucete">Caucete</option>
-                  <option value="Albardón">Albardón</option>
-                  <option value="9 de Julio">9 de Julio</option>
-                  <option value="San Martín">San Martín</option>
-                  <option value="Angaco">Angaco</option>
-                  <option value="Ullum">Ullum</option>
-                  <option value="Zonda">Zonda</option>
-                  <option value="Calingasta">Calingasta</option>
-                  <option value="Iglesia">Iglesia</option>
-                  <option value="Jáchal">Jáchal</option>
-                  <option value="Valle Fértil">Valle Fértil</option>
-                  <option value="25 de Mayo">25 de Mayo</option>
-                  <option value="Sarmiento">Sarmiento</option>
-                  <option value="Otra zona">Otra zona</option>
-                </select>
-              </div>
-
-              <div class="f-half-m">
-                <label class="lbl" for="f_precio">Precio <span class="opt">— opcional</span></label>
-                <div class="prefix">
-                  <select class="ctrl" id="f_moneda" aria-label="Moneda"
-                          style="flex:0 0 96px;border-radius:12px 0 0 12px;border-right:0;background-color:#f2f5fa">
-                    <option value="ARS">$ ARS</option>
-                    <option value="USD">USD</option>
+                <div class="f-half-m">
+                  <label class="lbl" for="f_categoria">Categoría *</label>
+                  <select class="ctrl" id="f_categoria" required>
+                    <option value="">Elegí una</option>
+                    <optgroup label="Inmuebles">
+                      <option value="Casas">Casas</option>
+                      <option value="Departamentos">Departamentos</option>
+                      <option value="Terrenos">Terrenos</option>
+                      <option value="Galpones y Depósitos">Galpones y depósitos</option>
+                      <option value="Quintas y Fincas">Quintas y fincas</option>
+                      <option value="Locales y Oficinas">Locales y oficinas</option>
+                    </optgroup>
+                    <optgroup label="Sector minero">
+                      <option value="Equipos y Maquinaria Minera">Equipos y maquinaria minera</option>
+                      <option value="Herramientas Mineras">Herramientas mineras</option>
+                      <option value="Vehículos y Logística Minera">Vehículos y logística minera</option>
+                      <option value="Insumos y Materiales Mineros">Insumos y materiales mineros</option>
+                      <option value="Propiedades con Concesión Minera">Propiedades con concesión minera</option>
+                    </optgroup>
                   </select>
-                  <input class="ctrl" type="number" id="f_precio" min="0" placeholder="Dejalo vacío = A consultar">
                 </div>
-              </div>
 
-              <div class="f-full">
-                <label class="lbl" for="f_descripcion">Contá los detalles *</label>
-                <textarea class="ctrl" id="f_descripcion" maxlength="1000" required
-                  placeholder="Metros, ambientes, estado, año, marca, servicios, qué tiene cerca... Cuanto más claro, menos preguntas te hacen."></textarea>
-                <div class="counter"><span id="c_desc">0</span>/1000</div>
-              </div>
-
-              <div class="f-full">
-                <label class="lbl">Fotos <span class="opt">— hasta 3, opcional pero recomendado</span></label>
-                <input type="file" id="f_fotos" accept="image/jpeg,image/png,image/webp" multiple hidden>
-                <div class="drop" id="dropArea" role="button" tabindex="0">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0a4a8f" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto">
-                    <path d="M20 16V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10"/><path d="M4 16l4.5-4.5a2 2 0 0 1 2.8 0L16 16"/><path d="M14.5 14.5 16 13a2 2 0 0 1 2.8 0L20 14.5"/><circle cx="9" cy="8.5" r="1.2"/><path d="M3 20h18"/>
-                  </svg>
-                  <b>Agregar fotos</b>
-                  <small>JPG, PNG o WEBP · máximo 3 · sin videos</small>
+                <div class="f-half-m">
+                  <label class="lbl" for="f_operacion">Quiero *</label>
+                  <select class="ctrl" id="f_operacion" required>
+                    <option value="">Elegí una</option>
+                    <option value="Venta">Vender</option>
+                    <option value="Alquiler">Alquilar</option>
+                    <option value="Busco">Busco / Necesito</option>
+                  </select>
                 </div>
-                <div class="thumbs" id="thumbs"></div>
-              </div>
 
-              <div class="f-half-m">
-                <label class="lbl" for="f_nombre">Tu nombre *</label>
-                <input class="ctrl" type="text" id="f_nombre" maxlength="60" required placeholder="Nombre y apellido">
-              </div>
-
-              <div class="f-half-m">
-                <label class="lbl" for="f_telefono">Tu WhatsApp *</label>
-                <div class="prefix">
-                  <span>+54</span>
-                  <input class="ctrl" type="tel" id="f_telefono" inputmode="numeric" required placeholder="2645304372">
+                <div class="f-half-m">
+                  <label class="lbl" for="f_zona">Zona *</label>
+                  <select class="ctrl" id="f_zona" required>
+                    <option value="">Elegí zona</option>
+                    <option value="Capital">Capital</option>
+                    <option value="Rivadavia">Rivadavia</option>
+                    <option value="Rawson">Rawson</option>
+                    <option value="Chimbas">Chimbas</option>
+                    <option value="Santa Lucía">Santa Lucía</option>
+                    <option value="Pocito">Pocito</option>
+                    <option value="Caucete">Caucete</option>
+                    <option value="Albardón">Albardón</option>
+                    <option value="9 de Julio">9 de Julio</option>
+                    <option value="San Martín">San Martín</option>
+                    <option value="Angaco">Angaco</option>
+                    <option value="Ullum">Ullum</option>
+                    <option value="Zonda">Zonda</option>
+                    <option value="Calingasta">Calingasta</option>
+                    <option value="Iglesia">Iglesia</option>
+                    <option value="Jáchal">Jáchal</option>
+                    <option value="Valle Fértil">Valle Fértil</option>
+                    <option value="25 de Mayo">25 de Mayo</option>
+                    <option value="Sarmiento">Sarmiento</option>
+                    <option value="Otra zona">Otra zona</option>
+                  </select>
                 </div>
-                <p class="hint">Solo se usa para que los interesados te escriban.</p>
-              </div>
 
-              <div class="f-full">
-                <label class="check">
-                  <input type="checkbox" id="f_acepto" required>
-                  <span>Confirmo que la información y las fotos son mías y reales, y que no incluyen contenido ofensivo ni de terceros.</span>
-                </label>
-              </div>
-
-              <div class="f-full" style="margin-top:4px">
-                <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
-                  Publicar mi propiedad ahora
-                </button>
-                <div class="form-trust">
-                  <span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/></svg>
-                    Datos protegidos
-                  </span>
-                  <span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                    Sin costo ni comisión
-                  </span>
-                  <span>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                    Online al instante
-                  </span>
+                <div class="f-half-m">
+                  <label class="lbl" for="f_precio">Precio <span class="opt">— opcional</span></label>
+                  <div class="price-wrap">
+                    <select class="ctrl" id="f_moneda" aria-label="Moneda">
+                      <option value="ARS">$ ARS</option>
+                      <option value="USD">USD</option>
+                    </select>
+                    <input class="ctrl" type="number" id="f_precio" min="0" placeholder="Dejalo vacío = A consultar">
+                  </div>
                 </div>
-              </div>
 
+              </div>
             </div>
+
+            <!-- PASO 2: DETALLES -->
+            <div class="form-step">
+              <div class="step-header">
+                <span class="step-number">2</span>
+                <div>
+                  <div class="step-title">Detalles de tu aviso</div>
+                  <div class="step-sub">Descripción y fotos para que se vea profesional</div>
+                </div>
+              </div>
+              <div class="f-grid">
+
+                <div class="f-full">
+                  <label class="lbl" for="f_descripcion">Contá los detalles *</label>
+                  <textarea class="ctrl" id="f_descripcion" maxlength="1000" required
+                    placeholder="Metros, ambientes, estado, año, marca, servicios, qué tiene cerca... Cuanto más claro, menos preguntas te hacen."></textarea>
+                  <div class="counter"><span id="c_desc">0</span>/1000</div>
+                </div>
+
+                <div class="f-full">
+                  <label class="lbl">Fotos <span class="opt">— hasta 3, opcional pero recomendado</span></label>
+                  <input type="file" id="f_fotos" accept="image/jpeg,image/png,image/webp" multiple hidden>
+                  <div class="drop" id="dropArea" role="button" tabindex="0">
+                    <div class="drop-icon">
+                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0a4a8f" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 16V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10"/><path d="M4 16l4.5-4.5a2 2 0 0 1 2.8 0L16 16"/><path d="M14.5 14.5 16 13a2 2 0 0 1 2.8 0L20 14.5"/><circle cx="9" cy="8.5" r="1.2"/><path d="M3 20h18"/>
+                      </svg>
+                    </div>
+                    <b>Agregar fotos</b>
+                    <small>JPG, PNG o WEBP · máximo 3 · sin videos</small>
+                  </div>
+                  <div class="thumbs" id="thumbs"></div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- PASO 3: TUS DATOS -->
+            <div class="form-step">
+              <div class="step-header">
+                <span class="step-number">3</span>
+                <div>
+                  <div class="step-title">Tus datos de contacto</div>
+                  <div class="step-sub">Así los interesados te escriben directo por WhatsApp</div>
+                </div>
+              </div>
+              <div class="f-grid">
+
+                <div class="f-half-m">
+                  <label class="lbl" for="f_nombre">Tu nombre *</label>
+                  <input class="ctrl" type="text" id="f_nombre" maxlength="60" required placeholder="Nombre y apellido">
+                </div>
+
+                <div class="f-half-m">
+                  <label class="lbl" for="f_telefono">Tu WhatsApp *</label>
+                  <div class="prefix">
+                    <span>+54</span>
+                    <input class="ctrl" type="tel" id="f_telefono" inputmode="numeric" required placeholder="2645304372">
+                  </div>
+                  <p class="hint">Solo se usa para que los interesados te escriban.</p>
+                </div>
+
+                <div class="f-full">
+                  <label class="check">
+                    <input type="checkbox" id="f_acepto" required>
+                    <span>Confirmo que la información y las fotos son mías y reales, y que no incluyen contenido ofensivo ni de terceros.</span>
+                  </label>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="submit-wrap">
+              <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                Publicar mi propiedad ahora
+              </button>
+              <div class="form-trust">
+                <span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/></svg>
+                  Datos protegidos
+                </span>
+                <span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  Sin costo ni comisión
+                </span>
+                <span>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f8a5f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  Online al instante
+                </span>
+              </div>
+            </div>
+
           </form>
         </div>
 
